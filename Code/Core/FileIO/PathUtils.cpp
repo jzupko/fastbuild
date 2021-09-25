@@ -189,6 +189,21 @@
     }
 }
 
+// DS_JAZ: BEGIN
+void PathUtils::StripLastPathPart( AString & filePath )
+{
+    const char * lastSlash = filePath.FindLast( NATIVE_SLASH );
+    if ( !lastSlash )
+    {
+        lastSlash = filePath.FindLast( OTHER_SLASH );
+    }
+    if ( lastSlash )
+    {
+        filePath.SetLength( (uint32_t)( lastSlash - filePath.Get() ) );
+    }
+}
+// DS_JAZ: END
+
 // GetRelativePath
 //------------------------------------------------------------------------------
 /*static*/ void PathUtils::GetRelativePath( const AString & basePath,

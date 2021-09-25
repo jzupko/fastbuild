@@ -45,6 +45,8 @@ public:
 
     void EnumerateInputFiles( void (*callback)( const AString & inputFile, const AString & baseDir, void * userData ), void * userData ) const;
 
+    inline const AString & GetCompilerOutputPath() const { return m_CompilerOutputPath; } // DS_JAZ:
+
 protected:
     friend class FunctionObjectList;
 

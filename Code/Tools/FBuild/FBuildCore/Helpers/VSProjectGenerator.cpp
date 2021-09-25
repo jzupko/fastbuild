@@ -380,8 +380,39 @@ const AString & VSProjectGenerator::GenerateVCXProj( const AString & projectFile
             WritePGItem( "DebuggerFlavor",                  cIt->m_DebuggerFlavor );
             WritePGItem( "AumidOverride",                   cIt->m_AumidOverride );
             WritePGItem( "LocalDebuggerWorkingDirectory",   cIt->m_LocalDebuggerWorkingDirectory );
-            WritePGItem( "IntDir",                          cIt->m_IntermediateDirectory );
-            WritePGItem( "OutDir",                          cIt->m_OutputDirectory );
+
+            // DS_JAZ:
+            AStackString<> intDir( cIt->m_IntermediateDirectory );
+            if ( intDir.IsEmpty() )
+            {
+                if ( oln )
+                {
+                    ProjectGeneratorBase::GetRelativePath( projectBasePath, oln->GetCompilerOutputPath(), intDir );
+                }
+            }
+            WritePGItem( "IntDir",                          intDir );
+            AStackString<> outDir( cIt->m_OutputDirectory );
+            if ( outDir.IsEmpty() )
+            {
+                const Node * debugTarget = ProjectGeneratorBase::FindExecutableDebugTarget( cIt->m_TargetNode );
+                if ( debugTarget )
+                {
+                    ProjectGeneratorBase::GetRelativePath( projectBasePath, debugTarget->GetName(), outDir );
+                    PathUtils::StripLastPathPart( outDir );
+                    outDir += NATIVE_SLASH;
+                }
+                else if ( oln && oln->GetType() == Node::LIBRARY_NODE)
+                {
+                    ProjectGeneratorBase::GetRelativePath( projectBasePath, oln->CastTo< LibraryNode >()->GetLibrarianOutput(), outDir );
+                    PathUtils::StripLastPathPart( outDir );
+                    outDir += NATIVE_SLASH;
+                }
+            }
+            WritePGItem( "OutDir",                          outDir );
+            // DS_JAZ: WritePGItem( "IntDir",                          cIt->m_IntermediateDirectory );
+            // DS_JAZ: WritePGItem( "OutDir",                          cIt->m_OutputDirectory );
+            // DS_JAZ: END
+
             WritePGItem( "PackagePath",                     cIt->m_PackagePath );
             WritePGItem( "AdditionalSymbolSearchPaths",     cIt->m_AdditionalSymbolSearchPaths );
             WritePGItem( "LayoutDir",                       cIt->m_LayoutDir );

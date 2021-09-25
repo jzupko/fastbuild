@@ -39,6 +39,7 @@ public:
         LIB_FLAG_WARNINGS_AS_ERRORS_MSVC = 0x10,
     };
     static uint32_t DetermineFlags( const AString & librarianType, const AString & librarianName, const AString & args );
+    inline const AString & GetLibrarianOutput() const { return m_LibrarianOutput; } // DS_JAZ:
 private:
     friend class FunctionLibrary;
 
