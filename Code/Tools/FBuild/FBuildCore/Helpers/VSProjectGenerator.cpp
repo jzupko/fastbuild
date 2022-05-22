@@ -381,7 +381,7 @@ const AString & VSProjectGenerator::GenerateVCXProj( const AString & projectFile
             WritePGItem( "AumidOverride",                   cIt->m_AumidOverride );
             WritePGItem( "LocalDebuggerWorkingDirectory",   cIt->m_LocalDebuggerWorkingDirectory );
 
-            // DS_JAZ:
+            // JAZ BEGIN
             AStackString<> intDir( cIt->m_IntermediateDirectory );
             if ( intDir.IsEmpty() )
             {
@@ -409,9 +409,9 @@ const AString & VSProjectGenerator::GenerateVCXProj( const AString & projectFile
                 }
             }
             WritePGItem( "OutDir",                          outDir );
-            // DS_JAZ: WritePGItem( "IntDir",                          cIt->m_IntermediateDirectory );
-            // DS_JAZ: WritePGItem( "OutDir",                          cIt->m_OutputDirectory );
-            // DS_JAZ: END
+            // JAZ: WritePGItem( "IntDir",                          cIt->m_IntermediateDirectory );
+            // JAZ: WritePGItem( "OutDir",                          cIt->m_OutputDirectory );
+            // JAZ END
 
             WritePGItem( "PackagePath",                     cIt->m_PackagePath );
             WritePGItem( "AdditionalSymbolSearchPaths",     cIt->m_AdditionalSymbolSearchPaths );

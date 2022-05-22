@@ -6,7 +6,8 @@
 //------------------------------------------------------------------------------
 #if CI_BUILD
     // Travis CI comes with 2017 installed
-    #define USING_VS2017
+    // JAZ: #define USING_VS2017
+    #define USING_VS2019
 #else
     //#define USING_VS2015
     //#define USING_VS2017

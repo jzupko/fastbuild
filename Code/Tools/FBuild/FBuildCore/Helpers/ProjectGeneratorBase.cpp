@@ -9,7 +9,7 @@
 #include "Tools/FBuild/FBuildCore/FLog.h"
 #include "Tools/FBuild/FBuildCore/Graph/AliasNode.h"
 #include "Tools/FBuild/FBuildCore/Graph/CopyFileNode.h"
-#include "Tools/FBuild/FBuildCore/Graph/CSNode.h" // DS_JAZ:
+#include "Tools/FBuild/FBuildCore/Graph/CSNode.h" // JAZ
 #include "Tools/FBuild/FBuildCore/Graph/ExeNode.h"
 #include "Tools/FBuild/FBuildCore/Graph/DLLNode.h"
 #include "Tools/FBuild/FBuildCore/Graph/LibraryNode.h"
@@ -587,7 +587,7 @@ void ProjectGeneratorBase::AddConfig( const ProjectGeneratorBaseConfig & config 
     {
         switch ( node->GetType() )
         {
-            case Node::CS_NODE: return node->CastTo< CSNode > (); // DS_JAZ:
+            case Node::CS_NODE: return node->CastTo< CSNode > (); // JAZ
             case Node::EXE_NODE: return node->CastTo< ExeNode >();
             case Node::DLL_NODE: return node->CastTo< DLLNode >();
             case Node::COPY_FILE_NODE:
@@ -613,7 +613,7 @@ void ProjectGeneratorBase::AddConfig( const ProjectGeneratorBaseConfig & config 
             default: break; // Unsupported type - ignore
         }
     }
-    
+
     return nullptr;
 }
 

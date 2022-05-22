@@ -51,7 +51,7 @@ public:
     static void GetRelativePath( const AString & basePath,
                                  const AString & fileName,
                                  AString & outRelativeFileName );
-    static void StripLastPathPart( AString & filePath ); // DS_JAZ:
+    static void StripLastPathPart( AString & filePath ); // JAZ
 };
 
 //------------------------------------------------------------------------------
